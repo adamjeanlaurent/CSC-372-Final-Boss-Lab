@@ -24,11 +24,11 @@ app.use(session({
     saveUninitialized: false,
  }));
 
-const DB_HOST = process.env.DB_HOST         || '192.185.94.20';
-const DB_DATABASE = process.env.DB_DATABASE || 'ajeanlau_week10_lab';
-const DB_USER = process.env.DB_USER         || 'ajeanlau_rent';
-const DB_PASSWORD = process.env.DB_PASSWORD || 'throwaway1234';
-const DB_PORT = process.env.DB_PORT         || 3306;
+const DB_HOST = process.env.DB_HOST;
+const DB_DATABASE = process.env.DB_DATABASE;
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_PORT = process.env.DB_PORT;
 
 const SERVER_PORT = process.env.DB_PORT || 3000;
 
