@@ -1,14 +1,7 @@
-const button = document.querySelector('button');
-
-button.addEventListener('onclick', (e) => { logout(e) });
-
-// show name
-showName();
-
 const showName = async () => {
-    const endpoint = '/api/auth/profile';
+    const endpoint = '/api/profile/getName';
     const res = await fetch(endpoint);
-    const json = res.json();
+    const json = await res.json();
 
     if(!json.errors) {
         document.querySelector('h1').textContent = `Weclome ${json.name}`
@@ -16,16 +9,23 @@ const showName = async () => {
 }
 
 const logout = async (e) => {
+    console.log('clicked!!!');
     const endpoint = '/api/auth/logout';
     const options = {
         method: 'post'
     }
 
     const res = await fetch(endpoint, options);
-    const json = res.json();
+    const json = await res.json();
     
     if(json.message) {
         window.location.href = '/login'; 
     }
 }
 
+const button = document.querySelector('.btn-primary');
+
+button.addEventListener('click', (e) => { logout(e) });
+
+// show name
+showName();

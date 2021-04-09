@@ -42,6 +42,6 @@ app.use((error, req, res, next) => {
 
 app.use('/', pageRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/prfole', profileRoute);
+app.use('/api/profile', profileRoute);
 
 app.listen(SERVER_PORT);

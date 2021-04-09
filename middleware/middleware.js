@@ -4,8 +4,8 @@ const protectedRoute = (req, res, next) => {
     const sessionID = req.session.id;
 
     // check if session ID is in DB
-    connection.query('SELECT * FROM auth_lab WHERE sessionID = ?' , [sessionID], (errors, results, fields) => {
-        if(error || results.length === 0) {
+    connection.query('SELECT * FROM auth_lab WHERE sessionID = ?' , [sessionID], (error, results, fields) => {
+        if(results.length === 0) {
             // if user is not authetnicated they cannot access profile, send them to login
             return res.redirect('/login');
         }

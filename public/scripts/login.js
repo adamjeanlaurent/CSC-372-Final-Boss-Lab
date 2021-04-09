@@ -1,5 +1,4 @@
 const form = document.querySelector('form');
-
 form.addEventListener('submit', (e) => { login(e) });
 
 const login = async (e) => {
@@ -9,17 +8,18 @@ const login = async (e) => {
     const endpoint = '/api/auth/login';
     const options = {
         method: 'post',
-        body: {
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
             username: username,
             password: password,
-        }
+        })
     }
 
     const res = await fetch(endpoint, options);
-    const json = res.json();
-    
+    const json = await res.json();
+
     if(json.errors) {
-        renderErrors(json.renders);
+        renderErrors(json.errors);
     }
     else {
         window.location.href = '/profile'; 
@@ -37,10 +37,10 @@ const renderErrors = (errors) => {
     for(let error of errors) {
          // create div
         const div = document.createElement('div');
-        div.classList.add('alert', 'alert-warning');
+        div.classList.add('alert', 'alert-danger');
         div.textContent = error;
 
         // prepend
-        document.querySelector('body').appendChild(div);
+        document.querySelector('#errors').prepend(div);
     }
 }

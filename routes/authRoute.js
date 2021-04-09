@@ -11,7 +11,7 @@ router.post('/logout', (req, res, next) => {
         req.session.destroy();
     
         connection.query('UPDATE auth_lab SET sessionID = NULL WHERE sessionID = ?', [sessionID], (errors, results, fields) => {
-            return res.json({ message: success });
+            return res.json({ message: 'success' });
         });
     }
 
@@ -23,6 +23,7 @@ router.post('/logout', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
     try {
+        console.log(req.body);
         const { name, username, password } = req.body;
 
         // check for errors
@@ -80,7 +81,6 @@ router.post('/register', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     try {
         const { username, password } = req.body;
-
         // check for errors
         let errors = [];
         if(username === '') errors.push('username cannot be blank!😡');
@@ -136,6 +136,12 @@ router.post('/login', (req, res, next) => {
                         message: 'success'
                     });
                 });
+            });
+        }
+
+        else {
+            return res.json({
+                errors: errors
             });
         }
     }
