@@ -11,7 +11,7 @@ router.post('/logout', (req, res, next) => {
         req.session.destroy();
     
         connection.query('UPDATE auth_lab SET sessionID = NULL WHERE sessionID = ?', [sessionID], (errors, results, fields) => {
-            return res.redirect('/login');
+            return res.json({ message: success });
         });
     }
 

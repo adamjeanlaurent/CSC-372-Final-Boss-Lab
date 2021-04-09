@@ -5,7 +5,8 @@ const cors = require('cors');
 const exphbs = require('express-handlebars');
 
 const authRoute = require('./routes/authRoute');
-const pageRoute = require('../routes/pageRoute');
+const pageRoute = require('./routes/pageRoute');
+const profileRoute = require('./routes/profileRoute')
 
 const SERVER_PORT = process.env.PORT || 3000;
 const app = express();
@@ -41,5 +42,6 @@ app.use((error, req, res, next) => {
 
 app.use('/', pageRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/prfole', profileRoute);
 
 app.listen(SERVER_PORT);
